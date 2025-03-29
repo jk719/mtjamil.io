@@ -2,9 +2,109 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background: var(--primary-bg);
+  position: relative;
+  padding-top: var(--nav-height);
 }
 
 .main {
   flex: 1;
+  width: 100%;
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: var(--container-padding);
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  animation: fadeIn 0.3s ease-in-out;
+  position: relative;
+  z-index: 1;
+}
+
+.loginMain {
+  max-width: none;
+  padding: 0;
+  margin: 0;
+  gap: 0;
+}
+
+.section {
+  width: 100%;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.sectionTitle {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-align: center;
+  margin-bottom: 1rem;
+  position: relative;
+  letter-spacing: -0.02em;
+}
+
+.sectionTitle::after {
+  content: '';
+  position: absolute;
+  bottom: -0.75rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 2px;
+  background: var(--accent-blue);
+  border-radius: 1px;
+}
+
+.sectionContent {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (max-width: 768px) {
+  .main {
+    padding: 1rem;
+    gap: 2rem;
+  }
+
+  .loginMain {
+    padding: 0;
+    gap: 0;
+  }
+
+  .section {
+    padding: 0;
+  }
+
+  .sectionTitle {
+    font-size: 2rem;
+  }
+}
+
+.footer {
   padding: 2rem;
+  border-top: 1px solid var(--card-border);
+  text-align: center;
+  color: var(--text-tertiary);
+  font-size: 0.9rem;
+  background: var(--secondary-bg);
+  margin-top: auto;
+}
+
+.footer a {
+  color: var(--accent-blue);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer a:hover {
+  text-decoration: underline;
 } 

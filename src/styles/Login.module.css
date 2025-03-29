@@ -1,19 +1,21 @@
 .container {
-  min-height: calc(100vh - 64px);
+  min-height: calc(100vh - var(--nav-height));
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  padding: 2rem var(--container-padding);
+  background: var(--primary-bg);
 }
 
 .loginCard {
-  background: white;
+  background: var(--card-bg);
   padding: 2.5rem;
-  border-radius: 20px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  border-radius: 1rem;
+  border: 1px solid var(--card-border);
   width: 100%;
   max-width: 400px;
+  position: relative;
+  box-shadow: var(--shadow-md);
   animation: slideUp 0.5s ease-out;
 }
 
@@ -34,28 +36,29 @@
 }
 
 .logo {
-  font-size: 3rem;
-  color: #1976d2;
+  font-size: 2.5rem;
+  color: var(--accent-blue);
   margin-bottom: 1rem;
 }
 
 .header h1 {
-  color: #2c3e50;
+  color: var(--text-primary);
   margin: 0;
-  font-size: 2rem;
-  font-weight: 700;
+  font-size: 1.75rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
 }
 
 .subtitle {
-  color: #666;
+  color: var(--text-secondary);
   margin: 0.5rem 0 0;
-  font-size: 1rem;
+  font-size: 0.9rem;
 }
 
 .form {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.25rem;
 }
 
 .inputGroup {
@@ -68,62 +71,69 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  color: #2c3e50;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
   font-weight: 500;
 }
 
 .inputIcon {
-  color: #1976d2;
-  font-size: 1.1rem;
+  color: var(--accent-blue);
+  font-size: 1rem;
 }
 
 .inputGroup input {
-  padding: 0.8rem 1rem;
-  border: 2px solid #e9ecef;
-  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--input-border);
+  border-radius: 0.5rem;
   font-size: 1rem;
+  background: var(--input-bg);
+  color: var(--text-primary);
   transition: all 0.2s;
 }
 
 .inputGroup input:focus {
   outline: none;
-  border-color: #1976d2;
-  box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.1);
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.15);
 }
 
 .inputGroup input::placeholder {
-  color: #adb5bd;
+  color: var(--text-tertiary);
 }
 
 .errorContainer {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  background-color: #fff5f5;
-  color: #dc3545;
-  padding: 0.8rem;
-  border-radius: 8px;
-  margin-bottom: 1rem;
+  background: var(--error-bg);
+  color: var(--error);
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
 }
 
 .successContainer {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  background-color: #f0fff4;
-  color: #2f855a;
-  padding: 0.8rem;
-  border-radius: 8px;
-  margin-bottom: 1rem;
+  background: var(--success-bg);
+  color: var(--success);
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
 }
 
 .errorIcon, .successIcon {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
+  flex-shrink: 0;
 }
 
 .error, .success {
   margin: 0;
   font-size: 0.9rem;
+  line-height: 1.4;
 }
 
 .submitButton {
@@ -131,21 +141,20 @@
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  background: linear-gradient(to right, #1a237e, #1976d2);
+  background: var(--accent-blue);
   color: white;
-  padding: 1rem;
+  padding: 0.75rem;
   border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-weight: 600;
+  border-radius: 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 500;
   cursor: pointer;
   transition: all 0.2s;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
 }
 
 .submitButton:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background: var(--accent-blue-hover);
 }
 
 .buttonIcon {
@@ -164,8 +173,8 @@
   gap: 0.5rem;
   background: none;
   border: none;
-  color: #1976d2;
-  font-size: 0.9rem;
+  color: var(--accent-blue);
+  font-size: 0.85rem;
   cursor: pointer;
   padding: 0.5rem;
   margin-top: 0.5rem;
@@ -173,12 +182,7 @@
 }
 
 .forgotPassword:hover {
-  color: #1565c0;
   text-decoration: underline;
-}
-
-.forgotIcon {
-  font-size: 1rem;
 }
 
 .backToLogin {
@@ -188,8 +192,8 @@
   gap: 0.5rem;
   background: none;
   border: none;
-  color: #666;
-  font-size: 0.9rem;
+  color: var(--accent-blue);
+  font-size: 0.85rem;
   cursor: pointer;
   padding: 0.5rem;
   margin-top: 0.5rem;
@@ -197,6 +201,33 @@
 }
 
 .backToLogin:hover {
-  color: #2c3e50;
   text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .loginCard {
+    padding: 1.5rem;
+  }
+
+  .logo {
+    font-size: 2rem;
+  }
+
+  .header h1 {
+    font-size: 1.5rem;
+  }
+
+  .subtitle {
+    font-size: 0.85rem;
+  }
+
+  .inputGroup input,
+  .submitButton {
+    padding: 0.75rem;
+    font-size: 0.9rem;
+  }
 } 

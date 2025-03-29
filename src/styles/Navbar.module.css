@@ -1,93 +1,257 @@
 .navbar {
-  background: linear-gradient(to right, #1a237e, #1976d2);
-  padding: 1rem 2rem;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  width: 100%;
+  height: var(--nav-height);
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: sticky;
+  padding: 0 var(--container-padding);
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 1000;
 }
 
 .logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: white;
-  text-decoration: none;
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  transition: transform 0.2s;
-}
-
-.logo:hover {
-  transform: translateY(-2px);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-decoration: none;
+  letter-spacing: -0.01em;
 }
 
 .logoIcon {
-  font-size: 1.8rem;
+  color: var(--accent-blue);
+  font-size: 1.5rem;
 }
 
 .links {
   display: flex;
-  gap: 1.5rem;
   align-items: center;
+  gap: 2rem;
 }
 
 .link {
-  color: rgba(255, 255, 255, 0.9);
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
+  color: var(--text-primary);
+  font-weight: 400;
+  font-size: 0.9rem;
   transition: all 0.2s;
-  font-weight: 500;
+  position: relative;
+  padding: 0.5rem 0;
 }
 
 .link:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  color: white;
+  color: var(--accent-blue);
 }
 
 .userInfo {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  color: white;
+  color: var(--text-primary);
+  background: var(--secondary-bg);
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  border: none;
+  font-size: 0.9rem;
 }
 
 .userIcon {
-  font-size: 1.2rem;
+  color: var(--accent-blue);
 }
 
 .role {
-  padding: 0.25rem 0.75rem;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 20px;
-  font-size: 0.875rem;
-  color: white;
-  backdrop-filter: blur(4px);
+  font-weight: 400;
+  font-size: 0.9rem;
 }
 
-.logoutButton {
+.logoutButton,
+.loginButton {
   display: flex;
   align-items: center;
   gap: 0.5rem;
   padding: 0.5rem 1rem;
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--accent-blue);
   color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.2s;
+  border-radius: 2rem;
   font-weight: 500;
+  font-size: 0.9rem;
+  transition: all 0.2s;
 }
 
-.logoutButton:hover {
-  background: rgba(255, 255, 255, 0.2);
-  transform: translateY(-1px);
+.logoutButton::before,
+.loginButton::before {
+  display: none;
 }
 
-.logoutIcon {
+.logoutButton:hover,
+.loginButton:hover {
+  background: var(--accent-blue-hover);
+}
+
+.authSection {
+  position: relative;
+}
+
+.loginDropdown {
+  position: absolute;
+  top: calc(100% + 0.75rem);
+  right: 0;
+  background: var(--primary-bg);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  width: 320px;
+  box-shadow: var(--shadow-lg);
+  animation: slideDown 0.3s ease-out;
+  border: 1px solid var(--card-border);
+}
+
+.loginDropdown::before {
+  display: none;
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.inputGroup label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.inputIcon {
+  color: var(--accent-blue);
   font-size: 1rem;
+}
+
+.inputGroup input {
+  padding: 0.75rem 1rem;
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: 0.5rem;
+  color: var(--text-primary);
+  transition: all 0.2s;
+  font-size: 0.95rem;
+}
+
+.inputGroup input:focus {
+  outline: none;
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.15);
+}
+
+.inputGroup input::placeholder {
+  color: var(--text-tertiary);
+}
+
+.error {
+  padding: 0.75rem;
+  background: var(--error-bg);
+  color: var(--error);
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.submitButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.75rem;
+  background: var(--accent-blue);
+  color: white;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.submitButton:hover {
+  background: var(--accent-blue-hover);
+}
+
+.forgotPassword {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  color: var(--accent-blue);
+  font-size: 0.85rem;
+  transition: all 0.2s;
+  background: none;
+  border: none;
+  padding: 0.5rem;
+}
+
+.forgotPassword:hover {
+  text-decoration: underline;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0 1rem;
+  }
+
+  .logo span {
+    display: none;
+  }
+
+  .links {
+    gap: 1rem;
+  }
+
+  .loginDropdown {
+    position: fixed;
+    top: var(--nav-height);
+    right: 0;
+    left: 0;
+    width: 100%;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+    box-shadow: var(--shadow-md);
+    padding: 1.25rem;
+    max-height: calc(100vh - var(--nav-height));
+    overflow-y: auto;
+  }
+
+  .loginDropdown::before {
+    display: none;
+  }
+
+  .loginForm {
+    max-width: 400px;
+    margin: 0 auto;
+  }
 } 

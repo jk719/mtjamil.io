@@ -1,39 +1,29 @@
 import { useState } from 'react';
-import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth';
 import { useRouter } from 'next/router';
+import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth';
 import Layout from '@/components/Layout';
 import styles from '@/styles/Login.module.css';
-import { 
-  FaGraduationCap, 
-  FaEnvelope, 
-  FaLock, 
-  FaArrowRight,
-  FaExclamation,
-  FaQuestion
-} from 'react-icons/fa6';
+import { FaEnvelope, FaLock, FaArrowRight, FaQuestion, FaGraduationCap } from 'react-icons/fa6';
 
 export default function Login() {
+  const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const [success, setSuccess] = useState('');
   const [isResetMode, setIsResetMode] = useState(false);
-  const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
-    setSuccess('');
 
     try {
       const auth = getAuth();
       if (isResetMode) {
         await sendPasswordResetEmail(auth, email);
-        setSuccess('Password reset email sent! Please check your inbox.');
         setIsResetMode(false);
       } else {
         await signInWithEmailAndPassword(auth, email, password);
-        router.push('/');
+        router.push('/profile');
       }
     } catch (err) {
       if (err instanceof Error) {
@@ -59,26 +49,18 @@ export default function Login() {
             <h1>{isResetMode ? 'Reset Password' : 'Welcome Back'}</h1>
             <p className={styles.subtitle}>
               {isResetMode 
-                ? 'Enter your email to receive a password reset link'
+                ? 'Enter your email to reset your password'
                 : 'Sign in to continue your learning journey'}
             </p>
           </div>
 
-          {error && (
-            <div className={styles.errorContainer}>
-              <FaExclamation className={styles.errorIcon} />
-              <p className={styles.error}>{error}</p>
-            </div>
-          )}
-
-          {success && (
-            <div className={styles.successContainer}>
-              <FaExclamation className={styles.successIcon} />
-              <p className={styles.success}>{success}</p>
-            </div>
-          )}
-
           <form onSubmit={handleSubmit} className={styles.form}>
+            {error && (
+              <div className={styles.errorContainer}>
+                <span className={styles.error}>{error}</span>
+              </div>
+            )}
+
             <div className={styles.inputGroup}>
               <label htmlFor="email">
                 <FaEnvelope className={styles.inputIcon} />
@@ -112,30 +94,18 @@ export default function Login() {
             )}
 
             <button type="submit" className={styles.submitButton}>
-              {isResetMode ? 'Send Reset Link' : 'Sign In'}
+              {isResetMode ? 'Reset Password' : 'Sign In'}
               <FaArrowRight className={styles.buttonIcon} />
             </button>
 
-            {!isResetMode && (
-              <button
-                type="button"
-                onClick={() => setIsResetMode(true)}
-                className={styles.forgotPassword}
-              >
-                <FaQuestion className={styles.forgotIcon} />
-                Forgot Password?
-              </button>
-            )}
-
-            {isResetMode && (
-              <button
-                type="button"
-                onClick={() => setIsResetMode(false)}
-                className={styles.backToLogin}
-              >
-                Back to Login
-              </button>
-            )}
+            <button
+              type="button"
+              onClick={() => setIsResetMode(!isResetMode)}
+              className={styles.forgotPassword}
+            >
+              <FaQuestion className={styles.forgotIcon} />
+              {isResetMode ? 'Back to Login' : 'Forgot Password?'}
+            </button>
           </form>
         </div>
       </div>
