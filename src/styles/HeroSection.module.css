@@ -26,7 +26,7 @@
   position: relative;
   z-index: 1;
   animation: fadeIn 0.5s ease-out;
-  padding-top: 1rem;
+  padding-top: 0.5rem;
 }
 
 .title {
@@ -135,7 +135,7 @@
   display: flex;
   align-items: center;
   gap: 1rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
   width: 100%;
   justify-content: center;
 }
@@ -181,36 +181,34 @@
 }
 
 .option {
+  width: 100%;
+  padding: 12px 16px;
   background: var(--secondary-bg);
-  border: none;
-  border-radius: 0.75rem;
-  padding: 1.25rem 1.75rem;
-  color: var(--text-primary);
-  font-size: 1.1rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
   text-align: left;
-  transition: all 0.2s;
   cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  box-shadow: var(--shadow-sm);
+  transition: all 0.2s ease;
+  font-size: 1rem;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .option:hover {
-  background: #eaeaea;
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
+  background: var(--hover-bg);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .option.correct {
   background: var(--success-bg);
-  color: var(--success);
+  border-color: var(--success);
 }
 
 .option.incorrect {
   background: var(--error-bg);
-  color: var(--error);
+  border-color: var(--error);
 }
 
 .explanation {
@@ -300,11 +298,17 @@
 }
 
 .formula {
+  font-family: KaTeX_Main, 'Times New Roman', serif;
+  font-size: 1.1rem;
   display: inline-block;
-  margin: 0 0.1em;
-  vertical-align: middle;
-  min-height: 1.5em;
-  font-style: normal;
+  line-height: 1.2;
+}
+
+.option .formula {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 24px;
 }
 
 .gradeInput {
@@ -396,7 +400,7 @@
 
   .questionHeader {
     margin-bottom: 0.5rem;
-    margin-top: 0.5rem;
+    margin-top: 0;
   }
   
   .question {
