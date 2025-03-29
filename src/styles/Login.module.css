@@ -94,7 +94,7 @@
 .inputGroup input:focus {
   outline: none;
   border-color: var(--accent-blue);
-  box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.15);
+  box-shadow: 0 0 0 3px rgba(36, 66, 155, 0.15);
 }
 
 .inputGroup input::placeholder {

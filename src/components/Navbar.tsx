@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail, signOut, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { auth } from '@/lib/firebase';
@@ -29,6 +30,7 @@ export default function Navbar() {
   const [isResetMode, setIsResetMode] = useState(false);
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [showSignupForm, setShowSignupForm] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   
   const loginDropdownRef = useRef<HTMLDivElement>(null);
   const signupDropdownRef = useRef<HTMLDivElement>(null);
@@ -62,6 +64,22 @@ export default function Navbar() {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [showLoginForm, showSignupForm]);
+
+  // Handle responsive sizing
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    // Initial check
+    handleResize();
+    
+    // Add event listener
+    window.addEventListener('resize', handleResize);
+    
+    // Cleanup
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const handleLogout = async () => {
     try {
@@ -185,8 +203,7 @@ export default function Navbar() {
   return (
     <nav className={styles.navbar}>
       <Link href="/" className={styles.logo}>
-        <FaGraduationCap className={styles.logoIcon} />
-        <span>MTJamil.io</span>
+        <div className={styles.logoImage}></div>
       </Link>
       
       {!user && (

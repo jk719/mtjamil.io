@@ -1,6 +1,6 @@
 .navbar {
   width: 100%;
-  height: var(--nav-height, 64px);
+  height: var(--nav-height, 80px);
   background: rgba(255, 255, 255, 0.8);
   backdrop-filter: saturate(180%) blur(20px);
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
@@ -18,12 +18,23 @@
 .logo {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: var(--text-primary);
+  justify-content: flex-start;
   text-decoration: none;
-  letter-spacing: -0.01em;
+  height: 65px;
+  width: 170px;
+  overflow: visible;
+  position: relative;
+}
+
+.logoImage {
+  width: 350px;
+  height: 65px;
+  background-image: url('/mtJamil-log.svg');
+  background-position: left center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  transform: scale(2);
+  transform-origin: left center;
 }
 
 .logoIcon {
@@ -79,8 +90,8 @@
 
 .signupButton {
   background: transparent;
-  color: #0066cc;
-  border: 1px solid #0066cc;
+  color: #24429b;
+  border: 1px solid #24429b;
   border-radius: 20px;
   padding: 8px 16px;
   font-size: 0.9rem;
@@ -90,11 +101,11 @@
 }
 
 .signupButton:hover {
-  background-color: rgba(0, 102, 204, 0.1);
+  background-color: rgba(36, 66, 155, 0.1);
 }
 
 .loginButton {
-  background-color: #0066cc;
+  background-color: #24429b;
   color: white;
   border: none;
   border-radius: 20px;
@@ -105,7 +116,7 @@
 }
 
 .loginButton:hover {
-  background-color: #0055aa;
+  background-color: #2d50bb;
 }
 
 .loginIcon, .signupIcon {
@@ -117,7 +128,7 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.5rem 1rem;
-  background: var(--accent-blue, #0066cc);
+  background: var(--accent-blue, #24429b);
   color: white;
   border-radius: 2rem;
   font-weight: 500;
@@ -128,7 +139,7 @@
 }
 
 .logoutButton:hover {
-  background: var(--accent-blue-hover, #0055aa);
+  background: var(--accent-blue-hover, #2d50bb);
 }
 
 .logoutButton::before {
@@ -238,7 +249,7 @@
 .inputGroup input:focus {
   outline: none;
   border-color: var(--accent-blue);
-  box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.15);
+  box-shadow: 0 0 0 3px rgba(36, 66, 155, 0.15);
 }
 
 .inputGroup input::placeholder {
@@ -304,10 +315,18 @@
 @media (max-width: 768px) {
   .navbar {
     padding: 0.75rem 1rem;
+    height: var(--nav-height, 70px);
   }
 
-  .logo span {
-    display: none;
+  .logo {
+    width: 110px;
+    height: 55px;
+  }
+
+  .logoImage {
+    width: 220px;
+    height: 55px;
+    transform: scale(2);
   }
 
   .links {

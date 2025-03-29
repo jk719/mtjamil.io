@@ -265,61 +265,75 @@ export default function HeroSection() {
   };
 
   return (
-    <div className={styles.hero}>
-      <div className={styles.content}>
-        {/* Add progress bar at the top */}
-        <ProgressBar 
-          correctCount={correctCount} 
-          incorrectCount={incorrectCount} 
-          totalAnswered={totalAnswered}
-          correctStreak={correctStreak} // Pass the streak to ProgressBar
-          onReset={handleResetStats}
-        />
-        
-        <div className={styles.questionHeader}>
-          <FaEquals className={styles.categoryIcon} />
-          <span className={styles.category}>{currentQuestion.category}</span>
-        </div>
-        
-        <h3 className={styles.question}>{currentQuestion.question}</h3>
-        
-        <div className={styles.options}>
-          {currentQuestion.options.map((option, index) => (
-            <button
-              key={index}
-              className={`${styles.option} ${
-                selectedAnswer === option
-                  ? isCorrect
+    <>
+      {/* Progress Bar - Positioned outside the hero section */}
+      <ProgressBar
+        correctCount={correctCount}
+        incorrectCount={incorrectCount}
+        totalAnswered={totalAnswered}
+        correctStreak={correctStreak}
+        onReset={handleResetStats}
+      />
+      
+      <div className={styles.hero}>
+        <div className={styles.content}>
+          <div className={styles.questionHeader}>
+            <div className={styles.category}>
+              <FaBrain className={styles.categoryIcon} />
+              {currentQuestion.category}
+            </div>
+          </div>
+          
+          <div className={styles.question}>
+            {currentQuestion.question.includes('\\') 
+              ? <div dangerouslySetInnerHTML={{ __html: katex.renderToString(currentQuestion.question, { throwOnError: false }) }} /> 
+              : currentQuestion.question
+            }
+          </div>
+          
+          <div className={styles.options}>
+            {currentQuestion.options.map((option, index) => (
+              <button
+                key={index}
+                onClick={() => handleAnswerSelect(option)}
+                disabled={selectedAnswer !== null}
+                className={`${styles.option} ${
+                  selectedAnswer === option
+                    ? option === currentQuestion.correct
+                      ? styles.correct
+                      : styles.incorrect
+                    : selectedAnswer !== null && option === currentQuestion.correct
                     ? styles.correct
-                    : styles.incorrect
-                  : ''
-              }`}
-              onClick={() => handleAnswerSelect(option)}
-              disabled={showExplanation}
+                    : ''
+                }`}
+              >
+                {option.includes('\\') 
+                  ? <div dangerouslySetInnerHTML={{ __html: katex.renderToString(option, { throwOnError: false }) }} /> 
+                  : option
+                }
+              </button>
+            ))}
+          </div>
+          
+          {showExplanation && renderExplanation()}
+          
+          {showExplanation && (
+            <button
+              className={styles.nextButton}
+              onClick={() => {
+                const randomIndex = Math.floor(Math.random() * sampleQuestions.length);
+                setCurrentQuestion(sampleQuestions[randomIndex]);
+                setSelectedAnswer(null);
+                setIsCorrect(null);
+                setShowExplanation(false);
+              }}
             >
-              {renderFormula(option)}
+              Next Question
+              <FaArrowRight className={styles.buttonIcon} />
             </button>
-          ))}
+          )}
         </div>
-
-        {renderExplanation()}
-
-        {showExplanation && (
-          <button 
-            className={styles.nextButton}
-            onClick={() => {
-              const randomIndex = Math.floor(Math.random() * sampleQuestions.length);
-              setCurrentQuestion(sampleQuestions[randomIndex]);
-              setSelectedAnswer(null);
-              setIsCorrect(null);
-              setShowExplanation(false);
-            }}
-          >
-            Next Question
-            <FaArrowRight className={styles.buttonIcon} />
-          </button>
-        )}
       </div>
-    </div>
+    </>
   );
 } 

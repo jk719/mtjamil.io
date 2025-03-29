@@ -23,8 +23,8 @@
 }
 
 .badge {
-  background-color: #e3f2fd;
-  color: #1976d2;
+  background-color: #e5e8f5;
+  color: #24429b;
   padding: 0.5rem 1rem;
   border-radius: 20px;
   font-weight: 600;
@@ -54,7 +54,7 @@
 
 .icon {
   font-size: 1.5rem;
-  color: #1976d2;
+  color: #24429b;
 }
 
 .infoCard h4 {
@@ -94,7 +94,7 @@
 }
 
 .sectionIcon {
-  color: #1976d2;
+  color: #24429b;
   font-size: 1.2rem;
 }
 
@@ -115,7 +115,7 @@
 }
 
 .listIcon {
-  color: #1976d2;
+  color: #24429b;
   font-size: 1rem;
 }
 
@@ -126,7 +126,7 @@
   gap: 0.5rem;
   width: 100%;
   padding: 1rem;
-  background-color: #1976d2;
+  background-color: #24429b;
   color: white;
   border: none;
   border-radius: 8px;
@@ -137,7 +137,7 @@
 }
 
 .startButton:hover {
-  background-color: #1565c0;
+  background-color: #2d50bb;
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -149,4 +149,29 @@
 
 .startButton:hover .buttonIcon {
   transform: translateX(4px);
+}
+
+.activeQuestion {
+  background-color: #e5e8f5;
+  color: #24429b;
+}
+
+.timerContainer {
+  color: #24429b;
+}
+
+.nextButton {
+  background-color: #24429b;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.nextButton:hover {
+  background-color: #2d50bb;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 } 

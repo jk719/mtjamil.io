@@ -28,6 +28,13 @@
   gap: 0;
 }
 
+.homeMain {
+  max-width: none;
+  padding: 0;
+  margin: 0;
+  gap: 0;
+}
+
 .section {
   width: 100%;
   padding: 0;
@@ -79,6 +86,11 @@
     padding: 0;
     gap: 0;
   }
+  
+  .homeMain {
+    padding: 0;
+    gap: 0;
+  }
 
   .section {
     padding: 0;
@@ -107,4 +119,9 @@
 
 .footer a:hover {
   text-decoration: underline;
+}
+
+.progressBarSpacer {
+  height: 110px;
+  width: 100%;
 } 
