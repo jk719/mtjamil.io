@@ -2,11 +2,13 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth';
 import Layout from '@/components/Layout';
+import { useNotification } from '@/contexts/NotificationContext';
 import styles from '@/styles/Login.module.css';
 import { FaEnvelope, FaLock, FaArrowRight, FaQuestion, FaGraduationCap } from 'react-icons/fa6';
 
 export default function Login() {
   const router = useRouter();
+  const { showNotification } = useNotification();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -20,21 +22,27 @@ export default function Login() {
       const auth = getAuth();
       if (isResetMode) {
         await sendPasswordResetEmail(auth, email);
+        showNotification('success', 'Password reset email sent');
         setIsResetMode(false);
       } else {
         await signInWithEmailAndPassword(auth, email, password);
+        showNotification('success', 'Successfully logged in');
         router.push('/profile');
       }
     } catch (err) {
       if (err instanceof Error) {
         if (err.message.includes('auth/wrong-password')) {
           setError('Incorrect password');
+          showNotification('error', 'Incorrect password');
         } else if (err.message.includes('auth/user-not-found')) {
           setError('Email not found');
+          showNotification('error', 'Email not found');
         } else if (err.message.includes('auth/invalid-email')) {
           setError('Invalid email address');
+          showNotification('error', 'Invalid email address');
         } else {
           setError('Failed to process request. Please try again.');
+          showNotification('error', 'Login failed. Please try again.');
         }
       }
     }
