@@ -1,0 +1,133 @@
+.container {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.inputGroup label {
+  font-weight: 500;
+}
+
+.inputGroup input {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.question {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.buttonGroup {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.button {
+  padding: 0.75rem 2rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 120px;
+}
+
+.yesButton {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.yesButton:hover {
+  background-color: #45a049;
+}
+
+.noButton {
+  background-color: #f44336;
+  color: white;
+}
+
+.noButton:hover {
+  background-color: #da190b;
+}
+
+.button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.errorContainer {
+  padding: 1rem;
+  background-color: #ffebee;
+  border: 1px solid #ffcdd2;
+  border-radius: 4px;
+  color: #c62828;
+}
+
+.error {
+  color: #dc2626;
+  margin: 0;
+  font-weight: 500;
+}
+
+.success {
+  text-align: center;
+  padding: 2rem;
+}
+
+.success h2 {
+  color: #4CAF50;
+  margin-bottom: 1rem;
+}
+
+.success p {
+  color: #059669;
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin: 0 0 1rem 0;
+}
+
+.link {
+  display: inline-block;
+  margin-top: 1rem;
+  color: #2196F3;
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.userEmail {
+  font-size: 0.875rem;
+  color: #666;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.loadingContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+} 
